@@ -79,7 +79,8 @@ function App() {
       // Calculate WPM in real-time
       if (startTime) {
         const timeElapsed = (Date.now() - startTime) / 1000 / 60 // in minutes
-        const wordsTyped = value.trim().split(/\s+/).length
+        const trimmedValue = value.trim()
+        const wordsTyped = trimmedValue.length > 0 ? trimmedValue.split(/\s+/).length : 0
         const currentWpm = timeElapsed > 0 ? Math.round(wordsTyped / timeElapsed) : 0
         setWpm(currentWpm)
       }
@@ -90,7 +91,8 @@ function App() {
     if (!startTime) return
 
     const timeElapsed = (Date.now() - startTime) / 1000 / 60 // in minutes
-    const wordsTyped = finalText.trim().split(/\s+/).length
+    const trimmedText = finalText.trim()
+    const wordsTyped = trimmedText.length > 0 ? trimmedText.split(/\s+/).length : 0
     const calculatedWpm = Math.round(wordsTyped / timeElapsed)
     
     const correctChars = finalText.split('').filter((char, index) => char === targetText[index]).length
