@@ -1,16 +1,54 @@
-# React + Vite
+# Bible Typing Trainer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bible Typing Trainer is a web-based application designed to help users improve their typing skills while engaging with Bible scriptures. Users can practice typing verses from the Bible, track their progress, and enhance their typing speed and accuracy.
 
-Currently, two official plugins are available:
+## Features
+- Typing practice with Bible verses.
+- Real-time speed and accuracy tracking.
+- Progress tracking for users.
+- Customizable difficulty levels.
+- Leaderboards and daily challenges.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- **Frontend**: React with Vite for fast and efficient development.
+- **Styling**: Tailwind CSS for responsive and modern design.
+- **Backend**: Node.js and Express.js for handling requests.
+- **Database**: MongoDB for storing user progress and data.
+- **API**: Bible verses fetched using [Bible API](https://bibleapi.co/).
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js and npm installed.
 
-## Expanding the ESLint configuration
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Berucha/bible-typing-trainer.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd bible-typing-trainer
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Running the App
+Start the development server:
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes and commit them.
+4. Submit a pull request.
+
+## License
+This project is open-source and available under the MIT License.
