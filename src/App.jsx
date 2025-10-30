@@ -44,6 +44,8 @@ function App() {
   const [isComplete, setIsComplete] = useState(false)
   const [wpm, setWpm] = useState(0)
   const [accuracy, setAccuracy] = useState(100)
+  const [sessionBestWpm, setSessionBestWpm] = useState(null)
+  const [isNewRecord, setIsNewRecord] = useState(false)
   const inputRef = useRef(null)
 
   const currentVerse = bibleVerses[currentVerseIndex]
@@ -100,11 +102,20 @@ function App() {
 
     setWpm(calculatedWpm)
     setAccuracy(calculatedAccuracy)
+    // Update session-best WPM within this session (in-memory)
+    if (sessionBestWpm === null || calculatedWpm > sessionBestWpm) {
+      setSessionBestWpm(calculatedWpm)
+      setIsNewRecord(true)
+    } else {
+      setIsNewRecord(false)
+    }
   }
 
   const nextVerse = () => {
     setCurrentVerseIndex((prevIndex) => (prevIndex + 1) % bibleVerses.length)
     resetTyping()
+    // clear the new-record flag when moving to the next verse
+    setIsNewRecord(false)
   }
 
   const resetTyping = () => {
@@ -113,6 +124,12 @@ function App() {
     setIsComplete(false)
     setWpm(0)
     setAccuracy(100)
+    setIsNewRecord(false)
+  }
+
+  const resetSessionBest = () => {
+    setSessionBestWpm(null)
+    setIsNewRecord(false)
   }
 
   const getCharacterClass = (index) => {
@@ -143,6 +160,10 @@ function App() {
             <span className="stat-label">Progress</span>
             <span className="stat-value">{userInput.length}/{targetText.length}</span>
           </div>
+          <div className="stat">
+            <span className="stat-label">Session Best</span>
+            <span className="stat-value">{sessionBestWpm ?? '-'}</span>
+          </div>
         </div>
 
         <div className="verse-display">
@@ -172,6 +193,9 @@ function App() {
           <div className="completion-message">
             <h2>Well Done! 🎉</h2>
             <p>You completed this verse with {accuracy}% accuracy at {wpm} WPM!</p>
+            {isNewRecord && (
+              <p className="new-record">New session record — {sessionBestWpm} WPM! 🏆</p>
+            )}
             <div className="button-group">
               <button onClick={nextVerse} className="btn-primary">
                 Next Verse
@@ -190,6 +214,9 @@ function App() {
             </button>
             <button onClick={resetTyping} className="btn-secondary">
               Reset
+            </button>
+            <button onClick={resetSessionBest} className="btn-secondary">
+              Reset Session Best
             </button>
           </div>
         )}
