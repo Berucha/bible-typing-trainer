@@ -68,11 +68,11 @@ function App() {
 
     setUserInput(value)
 
-    // Check if typing is complete
-    if (value === targetText) {
+    // Check if typing is complete (when user has typed the full length)
+    if (value.length === targetText.length) {
       setIsComplete(true)
       calculateStats(value)
-    } else if (value.length <= targetText.length) {
+    } else if (value.length < targetText.length) {
       // Calculate accuracy in real-time
       const correctChars = value.split('').filter((char, index) => char === targetText[index]).length
       const currentAccuracy = value.length > 0 ? Math.round((correctChars / value.length) * 100) : 100
